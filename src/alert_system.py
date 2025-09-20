@@ -124,15 +124,24 @@ class AlertSystem:
     def _send_telegram_alert(self, finding: Dict) -> bool:
         """Send alert via Telegram"""
         try:
+            import asyncio
+            
             message = self._format_telegram_message(finding)
             
-            # Send message
-            self.telegram_bot.send_message(
-                chat_id=self.chat_id,
-                text=message,
-                parse_mode='HTML',
-                disable_web_page_preview=True
-            )
+            # Send message using async context
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            try:
+                loop.run_until_complete(
+                    self.telegram_bot.send_message(
+                        chat_id=self.chat_id,
+                        text=message,
+                        parse_mode='HTML',
+                        disable_web_page_preview=True
+                    )
+                )
+            finally:
+                loop.close()
             
             self.logger.info(f"Telegram alert sent for: {finding['url']}")
             return True
@@ -208,11 +217,9 @@ class AlertSystem:
         keyword_matches = finding.get('keyword_matches', [])
         if keyword_matches:
             message += f"🔍 <b>Keywords Found:</b>\n"
-            keywords = list(set([match['keyword'] for match in keyword_matches[:5]]))  # Limit to 5
+            keywords = list(set([match['keyword'] for match in keyword_matches]))  # Get all unique keywords
             for keyword in keywords:
                 message += f"  • {keyword}\n"
-            if len(keyword_matches) > 5:
-                message += f"  • ... and {len(keyword_matches) - 5} more\n"
             message += "\n"
         
         # Add entities
@@ -270,11 +277,9 @@ class AlertSystem:
             <h3 style="color: #2c5aa0;">🔍 Keywords Found:</h3>
             <ul>
             """
-            keywords = list(set([match['keyword'] for match in keyword_matches[:10]]))
+            keywords = list(set([match['keyword'] for match in keyword_matches]))
             for keyword in keywords:
                 html += f"<li><strong>{keyword}</strong></li>"
-            if len(keyword_matches) > 10:
-                html += f"<li>... and {len(keyword_matches) - 10} more</li>"
             html += "</ul>"
         
         # Add entities

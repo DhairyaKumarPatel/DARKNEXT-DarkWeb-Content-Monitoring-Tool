@@ -1,0 +1,9 @@
+# Test URLs for generating alerts from real dark web marketplaces - LIMITED SET
+# DeepMarket - Multisig Escrow System Marketplace
+http://deepmad2lazxk4nkej44r4hntwx7i52wrbqmttx6rytp47vsk3vitnid.onion/
+
+# TorBuy - Escrow Marketplace  
+http://torbuyxpe6auueywlctu4wz6ur3o5n2meybt6tyi4rmeudtjsysayqyd.onion
+
+# Rent-A-Hacker Services
+http://hackerfuiogkjafl7ome7etnizvduzvlviyo7tupnjo5uvr2by25m3yd.onion/

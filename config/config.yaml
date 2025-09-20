@@ -1,8 +1,8 @@
 # Core settings
 tor:
   proxy_host: "127.0.0.1"
-  proxy_port: 9050
-  control_port: 9051
+  proxy_port: 9150  # Tor Browser port (was 9050 for standalone Tor)
+  control_port: 9151  # Tor Browser control port (was 9051)
   timeout: 30
   max_retries: 3
   retry_delay: 2
@@ -33,10 +33,10 @@ content:
 # Alerts
 alerts:
   enabled: true
-  methods: ["telegram"]  # Options: telegram, email, file
+  methods: ["telegram", "file"]  # Options: telegram, email, file
   telegram:
-    bot_token: "YOUR_BOT_TOKEN_HERE"
-    chat_id: "YOUR_CHAT_ID_HERE"
+    bot_token: "8297782506:AAHPfzzjEMf4cIOiauhD3HRYz729TMNykIc"
+    chat_id: "5937674871"
   email:
     smtp_server: "smtp.gmail.com"
     smtp_port: 587

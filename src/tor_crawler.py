@@ -25,8 +25,8 @@ class TorCrawler:
         
         # Tor proxy settings
         self.tor_proxy = {
-            'http': f"socks5://{config['tor']['proxy_host']}:{config['tor']['proxy_port']}",
-            'https': f"socks5://{config['tor']['proxy_host']}:{config['tor']['proxy_port']}"
+            'http': f"socks5h://{config['tor']['proxy_host']}:{config['tor']['proxy_port']}",
+            'https': f"socks5h://{config['tor']['proxy_host']}:{config['tor']['proxy_port']}"
         }
         
         # Session configuration

@@ -305,6 +305,34 @@ class FileBasedStorage:
             self.logger.error(f"Failed to read findings from file: {str(e)}")
             return findings
     
+    def save_raw_content(self, url: str, raw_html: str, timestamp: float) -> Optional[str]:
+        """Save raw HTML content to archive directory"""
+        try:
+            if not self.config.get('content', {}).get('archive_raw_html', True):
+                return None
+            
+            # Create archive directory
+            archive_dir = os.path.join(os.getcwd(), 'archive')
+            os.makedirs(archive_dir, exist_ok=True)
+            
+            # Generate filename
+            url_hash = hashlib.sha256(url.encode()).hexdigest()[:16]
+            timestamp_str = datetime.fromtimestamp(timestamp).strftime('%Y%m%d_%H%M%S')
+            filename = f"{timestamp_str}_{url_hash}.html"
+            
+            filepath = os.path.join(archive_dir, filename)
+            
+            # Save raw HTML
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(raw_html)
+            
+            self.logger.info(f"Raw content archived: {filename}")
+            return filepath
+            
+        except Exception as e:
+            self.logger.error(f"Failed to archive raw content: {str(e)}")
+            return None
+
     def _generate_id(self, url: str, timestamp: float) -> str:
         """Generate a unique ID for a finding"""
         content = f"{url}:{timestamp}"
