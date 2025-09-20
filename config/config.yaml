@@ -1,0 +1,64 @@
+# Core settings
+tor:
+  proxy_host: "127.0.0.1"
+  proxy_port: 9050
+  control_port: 9051
+  timeout: 30
+  max_retries: 3
+  retry_delay: 2
+
+# Database settings
+database:
+  type: "mongodb"
+  host: "localhost"
+  port: 27017
+  name: "darknext_db"
+  collection: "dark_web_findings"
+
+# Crawler settings
+crawler:
+  max_pages_per_site: 10
+  delay_between_requests: 5
+  user_agent: "Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101 Firefox/91.0"
+  max_concurrent_requests: 3
+  page_timeout: 60
+
+# Content processing
+content:
+  max_content_length: 1048576  # 1MB
+  archive_raw_html: true
+  extract_entities: true
+  min_content_length: 100
+
+# Alerts
+alerts:
+  enabled: true
+  methods: ["telegram"]  # Options: telegram, email, file
+  telegram:
+    bot_token: "YOUR_BOT_TOKEN_HERE"
+    chat_id: "YOUR_CHAT_ID_HERE"
+  email:
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    username: "your_email@gmail.com"
+    password: "your_app_password"
+    recipient: "alerts@example.com"
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "[%(asctime)s] %(levelname)s - %(name)s: %(message)s"
+  file_enabled: true
+  console_enabled: true
+
+# Security
+security:
+  max_file_size: 10485760  # 10MB
+  blocked_extensions: [".exe", ".bat", ".sh", ".ps1", ".scr"]
+  request_headers:
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    "Accept-Language": "en-US,en;q=0.5"
+    "Accept-Encoding": "gzip, deflate"
+    "DNT": "1"
+    "Connection": "keep-alive"
+    "Upgrade-Insecure-Requests": "1"

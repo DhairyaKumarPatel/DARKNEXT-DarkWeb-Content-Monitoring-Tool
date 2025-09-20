@@ -1,0 +1,35 @@
+# Core dependencies
+requests>=2.31.0
+aiohttp>=3.8.5
+beautifulsoup4>=4.12.2
+lxml>=4.9.3
+scrapy>=2.11.0
+
+# Database
+pymongo>=4.5.0
+
+# Tor integration
+stem>=1.8.1
+PySocks>=1.7.1
+
+# NLP and regex (optional)
+spacy>=3.6.1
+spacy[transformers]>=3.6.1
+
+# Alerts
+python-telegram-bot>=20.5
+secure-smtplib>=0.1.1
+
+# Configuration
+PyYAML>=6.0.1
+python-dotenv>=1.0.0
+
+# Utilities
+colorama>=0.4.6
+tqdm>=4.66.1
+schedule>=1.2.0
+
+# Development
+pytest>=7.4.2
+black>=23.7.0
+flake8>=6.0.0

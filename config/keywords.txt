@@ -1,0 +1,53 @@
+# DARKNEXT Keywords Configuration
+# Add keywords that you want to monitor for on dark web sites
+# One keyword per line, case-insensitive matching
+# Use # for comments
+
+# Cybersecurity related terms
+vulnerability
+exploit
+0day
+zero-day
+ransomware
+malware
+botnet
+phishing
+
+# Financial/Cryptocurrency
+bitcoin
+cryptocurrency
+wallet
+private key
+seed phrase
+money laundering
+
+# Personal Information (OSINT)
+database leak
+data breach
+personal information
+credit card
+social security
+
+# Illegal marketplaces (for research only)
+marketplace
+vendor
+escrow
+drugs
+weapons
+stolen data
+
+# Technology
+source code
+API key
+password
+credentials
+SSH key
+access token
+
+# General threat intelligence
+threat actor
+APT
+campaign
+infrastructure
+C2
+command and control
